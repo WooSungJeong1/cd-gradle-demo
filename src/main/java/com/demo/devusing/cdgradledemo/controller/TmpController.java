@@ -9,6 +9,6 @@ public class TmpController {
 
     @GetMapping("/temp")
     public String temp(){
-        return "TEMP test";
+        return "TEMP test2";
     }
 }
