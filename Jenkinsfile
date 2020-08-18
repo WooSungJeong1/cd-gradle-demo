@@ -38,7 +38,7 @@ pipeline {
                 script{
                     try {
                         sh 'sshpass -p msl1234~ scp -v -o StrictHostKeyChecking=no build/libs/*.jar ci@10.122.64.49:/CI/jws/multi/'
-                        sh '/Ci/jws/cd-gradle-demo.git/deploy.sh'
+                        sh '/Ci/jws/deploy.sh'
                         slackSend message: 'DEPLOY SUCCESS'
                      }catch (e){
                         slackSend color: '#BADA55', message: 'Deploy Fail'
