@@ -41,6 +41,7 @@ pipeline {
 //                         sh 'chmod +x ./script/run_server.sh'
 //                         sh './script/run_server.sh'
                         sh 'sshpass -p msl1234~ ssh -o StrictHostKeyChecking=no ci@10.122.64.49 "/CI/jws/deploy.sh"'
+                        sh ''
                         slackSend message: 'DEPLOY SUCCESS'
                      }catch (e){
                         slackSend color: '#BADA55', message: 'Deploy Fail'
