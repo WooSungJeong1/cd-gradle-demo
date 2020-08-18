@@ -10,8 +10,16 @@ pipeline {
                     credentialsId: '2e4c9062-dc25-4dfc-801e-1d3ea43d040f',
                 )
                 // Run Maven on a Unix agent.
-                sh "./gradlew clean build"
-
+                script{
+                    try {
+                        sh "./gradlew clean build"
+                        slackSend message: 'Build Success'
+                        sh "echo BUILD SUCCESS"
+                    }catch (e){
+                        slackSend color: '#BADA55', message: 'Build Fail'
+                        sh "echo BUILD FAIL"
+                    }
+                }
                 // To run Maven on a Windows agent, use
                 // bat "mvn -Dmaven.test.failure.ignore=true clean package"
             }
@@ -33,6 +41,8 @@ pipeline {
         stage('Done'){
             steps{
                 sh 'echo "DONE !!"'
+                slackSend color: '#BADA55', message: 'Build Done !! '
+
             }
         }
     }
