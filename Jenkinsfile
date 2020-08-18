@@ -35,13 +35,15 @@ pipeline {
 
         stage('Deploy'){
             steps{
-                try {
-                    sh 'sshpass -p msl1234~ scp -v -o StrictHostKeyChecking=no build/libs/*.jar ci@10.122.64.49:/CI/jws/multi/'
-                    sh '/Ci/jws/cd-gradle-demo.git/deploy.sh'
-                    slackSend message: 'DEPLOY SUCCESS'
-                 }catch (e){
-                    slackSend color: '#BADA55', message: 'Deploy Fail'
-                    sh "echo DEPLOY FAIL"
+                scrip{
+                    try {
+                        sh 'sshpass -p msl1234~ scp -v -o StrictHostKeyChecking=no build/libs/*.jar ci@10.122.64.49:/CI/jws/multi/'
+                        sh '/Ci/jws/cd-gradle-demo.git/deploy.sh'
+                        slackSend message: 'DEPLOY SUCCESS'
+                     }catch (e){
+                        slackSend color: '#BADA55', message: 'Deploy Fail'
+                        sh "echo DEPLOY FAIL"
+                     }
                  }
             }
         }
