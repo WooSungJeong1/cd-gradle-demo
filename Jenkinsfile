@@ -34,7 +34,7 @@ pipeline {
         }
 
         stage('Deploy'){
-            when { tag '*' }
+            when { tag "*-beta*" }
             steps{
                 script{
                     try {
