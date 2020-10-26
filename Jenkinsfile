@@ -36,9 +36,6 @@ pipeline {
         stage('Deploy'){
             steps{
                 when { tag '*' }
-                  steps {
-                      echo 'deploy'
-                  }
                 script{
                     try {
 //                         sh 'sshpass -p msl1234~ scp -v -o StrictHostKeyChecking=no build/libs/*.jar ci@10.122.64.49:/CI/jws/multi/'
