@@ -26,9 +26,6 @@ pipeline {
         }
 
         stage('Deploy'){
-            steps{
-//                 sh 'sshpass -p msl1234~ scp -v -o StrictHostKeyChecking=no build/libs/*.jar ci@10.122.64.49:/CI/jws/canary/'
-            }
                 when { tag '*' }
                   steps {
                       echo 'deploy'
