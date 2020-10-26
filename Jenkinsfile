@@ -28,7 +28,7 @@ pipeline {
         stage('Deploy'){
             when { tag "*-beta*" }
                   steps {
-                      sh 'echo deploy'
+                      sh 'echo "deploy"'
                   }
         }
         stage('Done'){
