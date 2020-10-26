@@ -26,7 +26,7 @@ pipeline {
         }
 
         stage('Deploy'){
-            when { tag '*' }
+//             when { tag '*' }
                   steps {
                       sh 'echo "deploy"'
                   }
