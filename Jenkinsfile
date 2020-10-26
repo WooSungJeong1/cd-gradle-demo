@@ -12,7 +12,7 @@ pipeline {
                 // Run Maven on a Unix agent.
                 script{
                     try {
-                        sh "./gradlew clean build"
+//                         sh "./gradlew clean build"
                         slackSend message: 'Build Success'
                         sh "echo BUILD SUCCESS"
                     }catch (e){
@@ -24,13 +24,13 @@ pipeline {
                 // bat "mvn -Dmaven.test.failure.ignore=true clean package"
             }
 
-            post {
-                // If Maven was able to run the tests, even if some of the test
-                // failed, record the test results and archive the jar file.
-                success {
-                    archiveArtifacts 'build/libs/*.jar'
-                }
-            }
+//             post {
+//                 // If Maven was able to run the tests, even if some of the test
+//                 // failed, record the test results and archive the jar file.
+//                 success {
+//                     archiveArtifacts 'build/libs/*.jar'
+//                 }
+//             }
         }
 
         stage('Deploy'){
@@ -38,6 +38,8 @@ pipeline {
             steps{
                 script{
                     try {
+                        sh 'echo "DEPLOY"'
+
 //                         sh 'sshpass -p msl1234~ scp -v -o StrictHostKeyChecking=no build/libs/*.jar ci@10.122.64.49:/CI/jws/multi/'
 //                         sh 'chmod +x ./script/run_server.sh'
 //                         sh './script/run_server.sh'
@@ -45,7 +47,7 @@ pipeline {
                         slackSend message: 'DEPLOY SUCCESS!'
                      }catch (e){
                         slackSend color: '#BADA55', message: 'Deploy Fail'
-                        sh "echo DEPLOY FAIL"
+                        sh 'echo "DEPLOY FAIL"'
                      }
                  }
             }
