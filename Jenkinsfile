@@ -5,10 +5,10 @@ pipeline {
         stage('Build') {
             steps {
                 // Get some code from a GitHub repository
-                git(
-                    url:'https://github.com/WooSungJeong1/cd-gradle-demo.git',
-                    credentialsId: '2e4c9062-dc25-4dfc-801e-1d3ea43d040f',
-                )
+//                 git(
+//                     url:'https://github.com/WooSungJeong1/cd-gradle-demo.git',
+//                     credentialsId: '2e4c9062-dc25-4dfc-801e-1d3ea43d040f',
+//                 )
                 // Run Maven on a Unix agent.
 //                 sh "./gradlew clean build"
                 sh 'echo "BUILD !! " '
