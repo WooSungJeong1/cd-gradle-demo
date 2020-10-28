@@ -54,7 +54,7 @@ pipeline {
         }
         stage('Done'){
             steps{
-                sh 'echo "DONE !"'
+                sh 'echo "DONE !!"'
                 slackSend color: '#BADA55', message: 'Build Done !!'
 
             }
